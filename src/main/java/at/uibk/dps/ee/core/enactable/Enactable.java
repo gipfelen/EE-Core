@@ -135,7 +135,7 @@ public abstract class Enactable implements ControlStateListener {
 	 * 
 	 * @param state the new state
 	 */
-	public void setState(State state) {
+	public void setState(final State state) {
 		final State previous = this.state;
 		final State current = state;
 		for (final EnactableStateListener stateListener : stateListeners) {

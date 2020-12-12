@@ -20,16 +20,18 @@ public class EeCore {
 	protected final InputDataProvider inputDataProvider;
 	protected final OutputDataHandler outputDataHandler;
 	protected final WorkflowProvider workflowProvider;
-	
+
 	protected final Set<EnactmentStateListener> stateListeners;
 
 	/**
 	 * Default constructor (also the one used by Guice)
 	 * 
 	 * @param inputDataProvider provider for the input data
-	 * @param outputDataHandler class handling the data obtained as the result of the WF execution
-	 * @param workflowProvider provider of the WF description
-	 * @param stateListeners classes which react to changes of the enactment state
+	 * @param outputDataHandler class handling the data obtained as the result of
+	 *                          the WF execution
+	 * @param workflowProvider  provider of the WF description
+	 * @param stateListeners    classes which react to changes of the enactment
+	 *                          state
 	 */
 	public EeCore(final InputDataProvider inputDataProvider, final OutputDataHandler outputDataHandler,
 			final WorkflowProvider workflowProvider, final Set<EnactmentStateListener> stateListeners) {
