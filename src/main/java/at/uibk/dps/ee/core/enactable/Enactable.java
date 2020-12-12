@@ -51,7 +51,7 @@ public abstract class Enactable implements ControlStateListener{
 	
 	protected final Set<EnactableStateListener> stateListeners;
 	
-	protected Enactable(Set<EnactableStateListener> stateListeners) {
+	protected Enactable(final Set<EnactableStateListener> stateListeners) {
 		this.stateListeners = stateListeners;
 	}
 	
@@ -111,7 +111,7 @@ public abstract class Enactable implements ControlStateListener{
 	 * 
 	 * @param input the data required for the execution
 	 */
-	public final void init(JsonObject inputData) {
+	public final void init(final JsonObject inputData) {
 		myInit(inputData);
 		setState(State.READY);
 	}
@@ -134,8 +134,8 @@ public abstract class Enactable implements ControlStateListener{
 	 * @param state the new state
 	 */
 	public void setState(State state) {
-		State previous = this.state;
-		State current = state;
+		final State previous = this.state;
+		final State current = state;
 		for (EnactableStateListener stateListener : stateListeners) {
 			stateListener.enactableStateChanged(this, previous, current);
 		}

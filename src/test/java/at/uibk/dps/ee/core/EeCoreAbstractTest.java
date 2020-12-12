@@ -10,7 +10,7 @@ import at.uibk.dps.ee.core.enactable.EnactmentStateListener;
 
 public class EeCoreAbstractTest {
 
-	protected class EeCoreMock extends EeCoreAbstract{
+	protected class EeCoreMock extends EeCore{
 		public EeCoreMock(InputDataProvider inputDataProvider, OutputDataHandler outputDataHandler,
 				WorkflowProvider applicationProvider, Set<EnactmentStateListener> stateListeners) {
 			super(inputDataProvider, outputDataHandler, applicationProvider, stateListeners);

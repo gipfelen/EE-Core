@@ -15,7 +15,7 @@ import at.uibk.dps.ee.core.exception.StopException;
  * @author Fedor Smirnov
  *
  */
-public abstract class EeCoreAbstract {
+public class EeCore {
 
 	protected final InputDataProvider inputDataProvider;
 	protected final OutputDataHandler outputDataHandler;
@@ -23,11 +23,19 @@ public abstract class EeCoreAbstract {
 	
 	protected final Set<EnactmentStateListener> stateListeners;
 
-	public EeCoreAbstract(final InputDataProvider inputDataProvider, final OutputDataHandler outputDataHandler,
-			final WorkflowProvider applicationProvider, final Set<EnactmentStateListener> stateListeners) {
+	/**
+	 * Default constructor (also the one used by Guice)
+	 * 
+	 * @param inputDataProvider provider for the input data
+	 * @param outputDataHandler class handling the data obtained as the result of the WF execution
+	 * @param workflowProvider provider of the WF description
+	 * @param stateListeners classes which react to changes of the enactment state
+	 */
+	public EeCore(final InputDataProvider inputDataProvider, final OutputDataHandler outputDataHandler,
+			final WorkflowProvider workflowProvider, final Set<EnactmentStateListener> stateListeners) {
 		this.inputDataProvider = inputDataProvider;
 		this.outputDataHandler = outputDataHandler;
-		this.workflowProvider = applicationProvider;
+		this.workflowProvider = workflowProvider;
 		this.stateListeners = stateListeners;
 	}
 
@@ -42,7 +50,7 @@ public abstract class EeCoreAbstract {
 		final Enactable enactableRoot = workflowProvider.getEnactableApplication();
 		JsonObject inputData = inputDataProvider.getInputData();
 		enactableRoot.init(inputData);
-		for (EnactmentStateListener stateListener : stateListeners) {
+		for (final EnactmentStateListener stateListener : stateListeners) {
 			stateListener.enactmentStarted();
 		}
 		try {
@@ -50,7 +58,7 @@ public abstract class EeCoreAbstract {
 			outputDataHandler.handleOutputData(outputData);
 		} catch (StopException stopException) {
 			// The root should never throw exceptions.
-			throw new FailureException("Stop exception from the enactable root.");
+			throw new FailureException(stopException);
 		}
 		for (EnactmentStateListener stateListener : stateListeners) {
 			stateListener.enactmentTerminated();

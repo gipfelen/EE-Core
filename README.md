@@ -1,4 +1,3 @@
-
 # APOLLO
 
 ## Enactment Engine

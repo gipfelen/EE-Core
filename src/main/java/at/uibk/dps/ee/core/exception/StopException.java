@@ -22,12 +22,21 @@ public class StopException extends Exception {
 	 * @author Fedor
 	 */
 	public enum StoppingReason {
-		ERROR, SYNCHRO
+		/**
+		 * Stopping because of an internal error
+		 */
+		ERROR
 	}
 
 	protected final StoppingReason stoppingReason;
 
+	/**
+	 * Constructed by providing the reason for the stop.
+	 *  
+	 * @param stoppingReason the reason for the stop
+	 */
 	public StopException(StoppingReason stoppingReason) {
+		super();
 		this.stoppingReason = stoppingReason;
 	}
 

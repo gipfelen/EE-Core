@@ -34,6 +34,15 @@
     	<exclude name="DataClass"/>
     </rule>
     
+    
+    <!--  Things I have to add to the master rule set -->
+    
+    <rule ref="category/java/errorprone.xml">
+    	<exclude name="BeanMembersShouldSerialize"/>
+    </rule>
+    
+    <!--  Things I have to add to the master rule set -->
+    
     <rule ref="category/java/documentation.xml" />
     <rule ref="category/java/errorprone.xml">
     </rule>
