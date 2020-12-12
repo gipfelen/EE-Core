@@ -1,10 +1,10 @@
 
-#APOLLO
+# APOLLO
 
-##Enactment Engine
+## Enactment Engine
 
-###CORE
+### CORE
 
-####Short Description 
+#### Short Description 
 
 The **EE-Core** repository contains the classes and interfaces describing the fundamental components and behavior of APOLLO's enactment engine.
