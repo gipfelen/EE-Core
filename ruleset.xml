@@ -27,6 +27,7 @@
     <rule ref="category/java/codestyle.xml"> 
     	<exclude name="OnlyOneReturn"/>
     	<exclude name="ClassNamingConventions"/>
+    	<exclude name="FieldNamingConventions"/>
     	<exclude name="AvoidProtectedMethodInFinalClassNotExtending"/>
     </rule>
     <rule ref="category/java/design.xml">
@@ -35,22 +36,23 @@
     </rule>
     
     
-    <!--  Things I have to add to the master rule set -->
+   
+    
+    <rule ref="category/java/documentation.xml" />
+    
+    
+    
+    <rule ref="category/java/multithreading.xml" />
+    <rule ref="category/java/performance.xml" />
+    <rule ref="category/java/security.xml" />
+
+	 <!--  Things I have to add to the master rule set -->
     
     <rule ref="category/java/errorprone.xml">
     	<exclude name="BeanMembersShouldSerialize"/>
     </rule>
     
     <!--  Things I have to add to the master rule set -->
-    
-    <rule ref="category/java/documentation.xml" />
-    <rule ref="category/java/errorprone.xml">
-    </rule>
-    
-    
-    <rule ref="category/java/multithreading.xml" />
-    <rule ref="category/java/performance.xml" />
-    <rule ref="category/java/security.xml" />
 
 
 	<!-- Comment requirements -->

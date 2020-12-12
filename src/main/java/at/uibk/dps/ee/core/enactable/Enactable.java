@@ -12,7 +12,7 @@ import at.uibk.dps.ee.core.exception.StopException;
  * 
  * @author Fedor Smirnov
  */
-public abstract class Enactable implements ControlStateListener{
+public abstract class Enactable implements ControlStateListener {
 
 	/**
 	 * The enactment state of the enactable
@@ -20,7 +20,7 @@ public abstract class Enactable implements ControlStateListener{
 	 * @author Fedor Smirnov
 	 *
 	 */
-	public enum State{
+	public enum State {
 		/**
 		 * Waiting for the provision of input data. Not enactable.
 		 */
@@ -46,16 +46,21 @@ public abstract class Enactable implements ControlStateListener{
 		 */
 		FINISHED
 	}
-	
+
 	protected State state = State.WAITING;
-	
+
 	protected final Set<EnactableStateListener> stateListeners;
-	
+
+	/**
+	 * It is recommended to build enactables using a factory to provide them with
+	 * the required listeners. Consequently, the constructor is protected.
+	 * 
+	 * @param stateListeners the list of listeners to notify of state changes
+	 */
 	protected Enactable(final Set<EnactableStateListener> stateListeners) {
 		this.stateListeners = stateListeners;
 	}
-	
-	
+
 	/**
 	 * Triggers the execution from the current state of the enactable. This results
 	 * in an execution and a change of states until (a) the execution is finished
@@ -65,19 +70,18 @@ public abstract class Enactable implements ControlStateListener{
 	 * 
 	 * @return the output data
 	 */
-	public final JsonObject play() throws StopException{
+	public final JsonObject play() throws StopException {
 		setState(State.RUNNING);
 		try {
-			JsonObject result = myPlay();
+			final JsonObject result = myPlay();
 			setState(State.FINISHED);
 			return result;
-		}catch(StopException stopExc) {
+		} catch (StopException stopExc) {
 			setState(State.STOPPED);
 			throw stopExc;
 		}
 	}
 
-	
 	/**
 	 * Method to define the class-specific play behavior.
 	 * 
@@ -85,8 +89,7 @@ public abstract class Enactable implements ControlStateListener{
 	 * @throws StopException a stop exception.
 	 */
 	protected abstract JsonObject myPlay() throws StopException;
-	
-	
+
 	/**
 	 * Pauses the execution of the enactable by stopping the execution while
 	 * preserving the inner state of the enactable.
@@ -95,8 +98,8 @@ public abstract class Enactable implements ControlStateListener{
 		myPause();
 		setState(State.PAUSED);
 	}
-	
-	public Set<EnactableStateListener> getStateListeners(){
+
+	public Set<EnactableStateListener> getStateListeners() {
 		return stateListeners;
 	}
 
@@ -105,7 +108,7 @@ public abstract class Enactable implements ControlStateListener{
 	 * 
 	 */
 	protected abstract void myPause();
-	
+
 	/**
 	 * Sets the object into its initial state. Can also be used to reset the state.
 	 * 
@@ -115,8 +118,7 @@ public abstract class Enactable implements ControlStateListener{
 		myInit(inputData);
 		setState(State.READY);
 	}
-	
-	
+
 	/**
 	 * Method to provide the class-specific init details.
 	 * 
@@ -136,12 +138,10 @@ public abstract class Enactable implements ControlStateListener{
 	public void setState(State state) {
 		final State previous = this.state;
 		final State current = state;
-		for (EnactableStateListener stateListener : stateListeners) {
+		for (final EnactableStateListener stateListener : stateListeners) {
 			stateListener.enactableStateChanged(this, previous, current);
 		}
 		this.state = state;
 	}
-	
-	
 
 }

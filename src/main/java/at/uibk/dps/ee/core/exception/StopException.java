@@ -35,7 +35,7 @@ public class StopException extends Exception {
 	 *  
 	 * @param stoppingReason the reason for the stop
 	 */
-	public StopException(StoppingReason stoppingReason) {
+	public StopException(final StoppingReason stoppingReason) {
 		super();
 		this.stoppingReason = stoppingReason;
 	}

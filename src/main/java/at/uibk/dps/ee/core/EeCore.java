@@ -48,19 +48,19 @@ public class EeCore {
 	 */
 	public void enactWorkflow() throws FailureException {
 		final Enactable enactableRoot = workflowProvider.getEnactableApplication();
-		JsonObject inputData = inputDataProvider.getInputData();
+		final JsonObject inputData = inputDataProvider.getInputData();
 		enactableRoot.init(inputData);
 		for (final EnactmentStateListener stateListener : stateListeners) {
 			stateListener.enactmentStarted();
 		}
 		try {
-			JsonObject outputData = enactableRoot.play();
+			final JsonObject outputData = enactableRoot.play();
 			outputDataHandler.handleOutputData(outputData);
 		} catch (StopException stopException) {
 			// The root should never throw exceptions.
 			throw new FailureException(stopException);
 		}
-		for (EnactmentStateListener stateListener : stateListeners) {
+		for (final EnactmentStateListener stateListener : stateListeners) {
 			stateListener.enactmentTerminated();
 		}
 	}
