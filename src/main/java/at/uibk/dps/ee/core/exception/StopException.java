@@ -19,7 +19,7 @@ public class StopException extends Exception {
 	/**
 	 * The reason for the stop.
 	 * 
-	 * @author Fedor
+	 * @author Fedor Smirnov
 	 */
 	public enum StoppingReason {
 		/**

@@ -71,6 +71,9 @@ public abstract class Enactable implements ControlStateListener {
 	 * @return the output data
 	 */
 	public final JsonObject play() throws StopException {
+		if (!getState().equals(State.READY)) {
+			throw new IllegalStateException("The enactable cannot be played since it is not in the READY state.");
+		}
 		setState(State.RUNNING);
 		try {
 			final JsonObject result = myPlay();
@@ -81,6 +84,8 @@ public abstract class Enactable implements ControlStateListener {
 			throw stopExc;
 		}
 	}
+	
+	
 
 	/**
 	 * Method to define the class-specific play behavior.
@@ -97,10 +102,6 @@ public abstract class Enactable implements ControlStateListener {
 	public final void pause() {
 		myPause();
 		setState(State.PAUSED);
-	}
-
-	public Set<EnactableStateListener> getStateListeners() {
-		return stateListeners;
 	}
 
 	/**
@@ -143,5 +144,4 @@ public abstract class Enactable implements ControlStateListener {
 		}
 		this.state = state;
 	}
-
 }

@@ -12,7 +12,7 @@ public class EeCoreAbstractTest {
 
 	protected class EeCoreMock extends EeCore{
 		public EeCoreMock(InputDataProvider inputDataProvider, OutputDataHandler outputDataHandler,
-				WorkflowProvider applicationProvider, Set<EnactmentStateListener> stateListeners) {
+				EnactableProvider applicationProvider, Set<EnactmentStateListener> stateListeners) {
 			super(inputDataProvider, outputDataHandler, applicationProvider, stateListeners);
 		}
 	}
