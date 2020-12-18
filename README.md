@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/Apollo-Core/EE-Core.svg)](https://jitpack.io/#Apollo-Core/EE-Core)
+[![](https://jitpack.io/v/Apollo-Core/EE-Core.svg)](https://jitpack.io/#Apollo-Core/EE-Core) ![example workflow name](https://github.com/Apollo-Core/EE-Core/workflows/Apollo-Core%20CI%20Java%20Repository/badge.svg)
 
 # Apollo-Core
 
