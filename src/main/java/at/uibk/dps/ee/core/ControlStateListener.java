@@ -5,7 +5,7 @@ import at.uibk.dps.ee.core.exception.StopException;
 
 /**
  * 
- * Interface for all classes who alter their behaviour depending on the state of
+ * Interface for all classes which alter their behaviour depending on the state of
  * the enactment or have to react to control state changes.
  * 
  * @author Fedor Smirnov
