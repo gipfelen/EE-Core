@@ -1,6 +1,6 @@
 [![](https://jitpack.io/v/Apollo-Core/EE-Core.svg)](https://jitpack.io/#Apollo-Core/EE-Core)
 
-# APOLLO
+# Apollo-Core
 
 ## Enactment Engine
 
