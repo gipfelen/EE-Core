@@ -7,7 +7,6 @@ import com.google.gson.JsonObject;
 
 import at.uibk.dps.ee.core.enactable.Enactable;
 import at.uibk.dps.ee.core.enactable.EnactableStateListener;
-import at.uibk.dps.ee.core.enactable.EnactmentState;
 import at.uibk.dps.ee.core.enactable.EnactmentStateListener;
 import at.uibk.dps.ee.core.enactable.Enactable.State;
 import at.uibk.dps.ee.core.exception.FailureException;
@@ -32,10 +31,6 @@ public class EeCoreTest {
 
 		protected EnactableMock(Set<EnactableStateListener> stateListeners) {
 			super(stateListeners);
-		}
-
-		@Override
-		public void reactToStateChange(EnactmentState previousState, EnactmentState currentState) throws StopException {
 		}
 
 		@Override

@@ -4,7 +4,6 @@ import java.util.Set;
 
 import com.google.gson.JsonObject;
 
-import at.uibk.dps.ee.core.ControlStateListener;
 import at.uibk.dps.ee.core.exception.StopException;
 
 /**
@@ -12,7 +11,7 @@ import at.uibk.dps.ee.core.exception.StopException;
  * 
  * @author Fedor Smirnov
  */
-public abstract class Enactable implements ControlStateListener {
+public abstract class Enactable{
 
 	/**
 	 * The enactment state of the enactable
