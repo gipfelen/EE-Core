@@ -20,7 +20,7 @@ public abstract class EnactableRoot extends Enactable {
 	 * 
 	 * @param stateListeners
 	 */
-	protected EnactableRoot(Set<EnactableStateListener> stateListeners) {
+	protected EnactableRoot(final Set<EnactableStateListener> stateListeners) {
 		super(stateListeners);
 	}
 
@@ -29,7 +29,7 @@ public abstract class EnactableRoot extends Enactable {
 	 * 
 	 * @param wfInput the json object which is to be used as WF input
 	 */
-	public void setInput(JsonObject wfInput) {
+	public void setInput(final JsonObject wfInput) {
 		this.wfInput = wfInput;
 	}
 
