@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import at.uibk.dps.ee.core.EnactmentState;
+
 /**
  * Just so that the enum does not pull down the coverage.
  * 

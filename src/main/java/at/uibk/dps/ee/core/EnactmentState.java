@@ -1,4 +1,4 @@
-package at.uibk.dps.ee.core.enactable;
+package at.uibk.dps.ee.core;
 
 /**
  * Enum defining the possible states of the enactment.
