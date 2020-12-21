@@ -1,6 +1,7 @@
 package at.uibk.dps.ee.core;
 
 import at.uibk.dps.ee.core.enactable.Enactable;
+import at.uibk.dps.ee.core.enactable.EnactableRoot;
 
 /**
  * The {@link EnactableProvider} is used to obtain the {@link Enactable} of
@@ -15,5 +16,5 @@ public interface EnactableProvider {
 	 * 
 	 * @return the enactable application
 	 */
-	Enactable getEnactableApplication();
+	EnactableRoot getEnactableApplication();
 }

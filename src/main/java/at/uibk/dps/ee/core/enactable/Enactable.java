@@ -2,8 +2,6 @@ package at.uibk.dps.ee.core.enactable;
 
 import java.util.Set;
 
-import com.google.gson.JsonObject;
-
 import at.uibk.dps.ee.core.exception.StopException;
 
 /**
@@ -69,15 +67,14 @@ public abstract class Enactable{
 	 * 
 	 * @return the output data
 	 */
-	public final JsonObject play() throws StopException {
+	public final void play() throws StopException {
 		if (!getState().equals(State.READY)) {
 			throw new IllegalStateException("The enactable cannot be played since it is not in the READY state.");
 		}
 		setState(State.RUNNING);
 		try {
-			final JsonObject result = myPlay();
+			myPlay();
 			setState(State.FINISHED);
-			return result;
 		} catch (StopException stopExc) {
 			setState(State.STOPPED);
 			throw stopExc;
@@ -92,7 +89,7 @@ public abstract class Enactable{
 	 * @return the output data
 	 * @throws StopException a stop exception.
 	 */
-	protected abstract JsonObject myPlay() throws StopException;
+	protected abstract void myPlay() throws StopException;
 
 	/**
 	 * Pauses the execution of the enactable by stopping the execution while
@@ -114,8 +111,8 @@ public abstract class Enactable{
 	 * 
 	 * @param input the data required for the execution
 	 */
-	public final void init(final JsonObject inputData) {
-		myInit(inputData);
+	public final void init() {
+		myInit();
 		setState(State.READY);
 	}
 
@@ -124,7 +121,7 @@ public abstract class Enactable{
 	 * 
 	 * @param inputData the input data.
 	 */
-	protected abstract void myInit(JsonObject inputData);
+	protected abstract void myInit();
 
 	public State getState() {
 		return state;

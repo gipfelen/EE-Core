@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.google.gson.JsonObject;
 
 import at.uibk.dps.ee.core.enactable.Enactable.State;
 import at.uibk.dps.ee.core.exception.StopException;
@@ -16,8 +15,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.mockito.Mockito.verify;
-
-import static org.mockito.Mockito.when;
 
 public class EnactableTest {
 
@@ -49,11 +46,10 @@ public class EnactableTest {
 		EnactableStateListener listenerMock = mock(EnactableStateListener.class);
 		listeners.add(listenerMock);
 		Enactable tested = getTested(listeners);
-		JsonObject jsonMock = new JsonObject();
 		assertEquals(State.WAITING, tested.state);
-		tested.init(jsonMock);
+		tested.init();
 		assertEquals(State.READY, tested.state);
-		verify(tested).myInit(jsonMock);
+		verify(tested).myInit();
 	}
 
 	@Test
@@ -73,13 +69,9 @@ public class EnactableTest {
 		EnactableStateListener listenerMock = mock(EnactableStateListener.class);
 		listeners.add(listenerMock);
 		Enactable tested = getTested(listeners);
-		JsonObject input = new JsonObject();
-		JsonObject expected = new JsonObject();
-		tested.init(input);
+		tested.init();
 		try {
-			when(tested.myPlay()).thenReturn(expected);
-			JsonObject result = tested.play();
-			assertEquals(expected, result);
+			tested.play();
 			assertEquals(State.FINISHED, tested.state);
 			verify(tested).setState(State.RUNNING);
 		} catch (StopException stopExc) {
@@ -93,10 +85,9 @@ public class EnactableTest {
 		EnactableStateListener listenerMock = mock(EnactableStateListener.class);
 		listeners.add(listenerMock);
 		Enactable tested = getTested(listeners);
-		JsonObject input = new JsonObject();
-		tested.init(input);
+		tested.init();
 		try {
-			when(tested.myPlay()).thenThrow(StopException.class);
+			Mockito.doThrow(StopException.class).when(tested).myPlay();
 			tested.play();
 			fail();
 		} catch (StopException stopExc) {

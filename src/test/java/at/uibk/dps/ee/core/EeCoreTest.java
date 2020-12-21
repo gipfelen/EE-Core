@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import com.google.gson.JsonObject;
 
-import at.uibk.dps.ee.core.enactable.Enactable;
+import at.uibk.dps.ee.core.enactable.EnactableRoot;
 import at.uibk.dps.ee.core.enactable.EnactableStateListener;
 import at.uibk.dps.ee.core.enactable.EnactmentStateListener;
 import at.uibk.dps.ee.core.enactable.Enactable.State;
@@ -23,9 +23,8 @@ import static org.mockito.Mockito.verify;
 
 public class EeCoreTest {
 
-	protected class EnactableMock extends Enactable {
+	protected class EnactableMock extends EnactableRoot {
 
-		protected JsonObject input;
 		protected JsonObject output;
 		protected boolean fails = false;
 
@@ -34,9 +33,9 @@ public class EeCoreTest {
 		}
 
 		@Override
-		protected JsonObject myPlay() throws StopException {
+		protected void myPlay() throws StopException {
 			if (!fails) {
-				return output;
+				return;
 			} else {
 				throw new StopException(StoppingReason.ERROR);
 			}
@@ -47,9 +46,15 @@ public class EeCoreTest {
 		}
 
 		@Override
-		protected void myInit(JsonObject inputData) {
-			this.input = inputData;
+		protected void myInit() {
 		}
+
+		@Override
+		public JsonObject getOutput() {
+			return output;
+		}
+		
+		
 	}
 
 	@Test
@@ -70,7 +75,6 @@ public class EeCoreTest {
 		EeCore tested = new EeCore(inputProviderMock, outputDataHandler, enactableProvider, enactmentListeners);
 		try {
 			tested.enactWorkflow();
-			assertEquals(mockInput, mockEnactable.input);
 			verify(outputDataHandler).handleOutputData(mockOutput);
 			verify(mockListener).enactmentStarted();
 			verify(mockListener).enactmentTerminated();

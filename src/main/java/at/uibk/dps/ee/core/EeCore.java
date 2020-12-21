@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.google.gson.JsonObject;
 
-import at.uibk.dps.ee.core.enactable.Enactable;
+import at.uibk.dps.ee.core.enactable.EnactableRoot;
 import at.uibk.dps.ee.core.enactable.EnactmentStateListener;
 import at.uibk.dps.ee.core.exception.FailureException;
 import at.uibk.dps.ee.core.exception.StopException;
@@ -49,14 +49,16 @@ public class EeCore {
 	 * @throws FailureException
 	 */
 	public void enactWorkflow() throws FailureException {
-		final Enactable enactableRoot = enactableProvider.getEnactableApplication();
+		final EnactableRoot enactableRoot = enactableProvider.getEnactableApplication();
 		final JsonObject inputData = inputDataProvider.getInputData();
-		enactableRoot.init(inputData);
+		enactableRoot.setInput(inputData);
+		enactableRoot.init();
 		for (final EnactmentStateListener stateListener : stateListeners) {
 			stateListener.enactmentStarted();
 		}
 		try {
-			final JsonObject outputData = enactableRoot.play();
+			enactableRoot.play();
+			final JsonObject outputData = enactableRoot.getOutput();
 			outputDataHandler.handleOutputData(outputData);
 		} catch (StopException stopException) {
 			// The root should never throw exceptions.
