@@ -54,6 +54,9 @@ public class EeCoreTest {
 			return output;
 		}
 		
+		@Override
+		protected void myReset() {
+		}
 		
 	}
 

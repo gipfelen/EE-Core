@@ -9,7 +9,7 @@ import at.uibk.dps.ee.core.exception.StopException;
  * 
  * @author Fedor Smirnov
  */
-public abstract class Enactable{
+public abstract class Enactable {
 
 	/**
 	 * The enactment state of the enactable
@@ -80,8 +80,6 @@ public abstract class Enactable{
 			throw stopExc;
 		}
 	}
-	
-	
 
 	/**
 	 * Method to define the class-specific play behavior.
@@ -105,6 +103,21 @@ public abstract class Enactable{
 	 * 
 	 */
 	protected abstract void myPause();
+
+	/**
+	 * Resets the state of the enactable so that it can be enacted again after a
+	 * previous enactament or an error.
+	 * 
+	 */
+	public final void reset() {
+		myReset();
+		setState(State.WAITING);
+	}
+
+	/**
+	 * Method to define class-specific reset behavior.
+	 */
+	protected abstract void myReset();
 
 	/**
 	 * Sets the object into its initial state. Can also be used to reset the state.

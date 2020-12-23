@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-
 import at.uibk.dps.ee.core.enactable.Enactable.State;
 import at.uibk.dps.ee.core.exception.StopException;
 
@@ -38,6 +37,15 @@ public class EnactableTest {
 		tested.pause();
 		assertEquals(Enactable.State.PAUSED, tested.getState());
 		verify(tested).myPause();
+	}
+
+	@Test
+	public void testReset() {
+		Set<EnactableStateListener> listeners = new HashSet<>();
+		Enactable tested = getTested(listeners);
+		tested.reset();
+		assertEquals(Enactable.State.WAITING, tested.getState());
+		verify(tested).myReset();
 	}
 
 	@Test
