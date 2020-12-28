@@ -68,8 +68,8 @@ public abstract class Enactable {
 	 * @return the output data
 	 */
 	public final void play() throws StopException {
-		if (!getState().equals(State.READY)) {
-			throw new IllegalStateException("The enactable cannot be played since it is not in the READY state.");
+		if (getState().equals(State.WAITING)) {
+			throw new IllegalStateException("The enactable cannot be played since it has not yet been initialized.");
 		}
 		setState(State.RUNNING);
 		try {
