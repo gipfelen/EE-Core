@@ -148,9 +148,9 @@ public abstract class Enactable {
 	public void setState(final State state) {
 		final State previous = this.state;
 		final State current = state;
+		this.state = state;
 		for (final EnactableStateListener stateListener : stateListeners) {
 			stateListener.enactableStateChanged(this, previous, current);
 		}
-		this.state = state;
 	}
 }
