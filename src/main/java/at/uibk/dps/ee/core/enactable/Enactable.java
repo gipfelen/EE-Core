@@ -3,6 +3,7 @@ package at.uibk.dps.ee.core.enactable;
 import java.util.Optional;
 import java.util.Set;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import at.uibk.dps.ee.core.exception.StopException;
@@ -72,6 +73,17 @@ public abstract class Enactable {
 	public JsonObject getResult() {
 		return Optional.ofNullable(jsonResult)
 				.orElseThrow(() -> new IllegalStateException("Result requested before enactment finished."));
+	}
+
+	/**
+	 * Sets the given value of the input {@link JsonObject}.
+	 * 
+	 * @param key   the key string
+	 * @param value the value which is set
+	 */
+	public void setInputValue(String key, JsonElement value) {
+		jsonInput = Optional.ofNullable(jsonInput).orElseGet(() -> new JsonObject());
+		jsonInput.add(key, value);
 	}
 
 	/**
