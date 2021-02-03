@@ -25,7 +25,6 @@ public class EeCoreTest {
 
 	protected class EnactableMock extends EnactableRoot {
 
-		protected JsonObject output;
 		protected boolean fails = false;
 
 		protected EnactableMock(Set<EnactableStateListener> stateListeners) {
@@ -41,6 +40,10 @@ public class EeCoreTest {
 			}
 		}
 
+		protected void setResult(JsonObject result) {
+			this.jsonResult = result;
+		}
+		
 		@Override
 		protected void myPause() {
 		}
@@ -49,11 +52,6 @@ public class EeCoreTest {
 		protected void myInit() {
 		}
 
-		@Override
-		public JsonObject getOutput() {
-			return output;
-		}
-		
 		@Override
 		protected void myReset() {
 		}
@@ -72,9 +70,9 @@ public class EeCoreTest {
 		when(inputProviderMock.getInputData()).thenReturn(mockInput);
 		EnactmentStateListener mockListener = mock(EnactmentStateListener.class);
 		enactmentListeners.add(mockListener);
-		JsonObject mockOutput = new JsonObject();
-		mockEnactable.output = mockOutput;
 		mockEnactable.setState(State.READY);
+		JsonObject mockOutput = new JsonObject();
+		mockEnactable.setResult(mockOutput);
 		EeCore tested = new EeCore(inputProviderMock, outputDataHandler, enactableProvider, enactmentListeners);
 		try {
 			tested.enactWorkflow();
@@ -100,7 +98,7 @@ public class EeCoreTest {
 		EnactmentStateListener mockListener = mock(EnactmentStateListener.class);
 		enactmentListeners.add(mockListener);
 		JsonObject mockOutput = new JsonObject();
-		mockEnactable.output = mockOutput;
+		mockEnactable.setResult(mockOutput);
 		mockEnactable.setState(State.READY);
 		EeCore tested = new EeCore(inputProviderMock, outputDataHandler, enactableProvider, enactmentListeners);
 		try {

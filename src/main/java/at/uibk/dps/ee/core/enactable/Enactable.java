@@ -1,6 +1,9 @@
 package at.uibk.dps.ee.core.enactable;
 
+import java.util.Optional;
 import java.util.Set;
+
+import com.google.gson.JsonObject;
 
 import at.uibk.dps.ee.core.exception.StopException;
 
@@ -48,6 +51,9 @@ public abstract class Enactable {
 
 	protected final Set<EnactableStateListener> stateListeners;
 
+	protected JsonObject jsonInput;
+	protected JsonObject jsonResult;
+
 	/**
 	 * It is recommended to build enactables using a factory to provide them with
 	 * the required listeners. Consequently, the constructor is protected.
@@ -56,6 +62,26 @@ public abstract class Enactable {
 	 */
 	protected Enactable(final Set<EnactableStateListener> stateListeners) {
 		this.stateListeners = stateListeners;
+	}
+
+	/**
+	 * Returns the {@link JsonObject} with the result of the enactment.
+	 * 
+	 * @return
+	 */
+	public JsonObject getResult() {
+		return Optional.ofNullable(jsonResult)
+				.orElseThrow(() -> new IllegalStateException("Result requested before enactment finished."));
+	}
+
+	/**
+	 * Returns the input which is set for the enactable.
+	 * 
+	 * @return the input which is set for the enactable
+	 */
+	public JsonObject getInput() {
+		return Optional.ofNullable(jsonInput)
+				.orElseThrow(() -> new IllegalStateException("Input requested before it is set."));
 	}
 
 	/**

@@ -29,7 +29,7 @@ public class EeCore {
 	 * @param inputDataProvider provider for the input data
 	 * @param outputDataHandler class handling the data obtained as the result of
 	 *                          the WF execution
-	 * @param enactableProvider  provider of the WF description
+	 * @param enactableProvider provider of the WF description
 	 * @param stateListeners    classes which react to changes of the enactment
 	 *                          state
 	 */
@@ -58,7 +58,7 @@ public class EeCore {
 		}
 		try {
 			enactableRoot.play();
-			final JsonObject outputData = enactableRoot.getOutput();
+			final JsonObject outputData = enactableRoot.getResult();
 			outputDataHandler.handleOutputData(outputData);
 		} catch (StopException stopException) {
 			// The root should never throw exceptions.

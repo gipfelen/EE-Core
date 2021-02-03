@@ -32,11 +32,4 @@ public abstract class EnactableRoot extends Enactable {
 	public void setInput(final JsonObject wfInput) {
 		this.wfInput = wfInput;
 	}
-
-	/**
-	 * Returns the JsonObject generated as the result of the WF enactment.
-	 * 
-	 * @return the JsonObject generated as the result of the WF enactment
-	 */
-	public abstract JsonObject getOutput();
 }
