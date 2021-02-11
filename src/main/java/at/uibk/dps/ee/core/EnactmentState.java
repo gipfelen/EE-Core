@@ -7,17 +7,16 @@ package at.uibk.dps.ee.core;
  *
  */
 public enum EnactmentState {
-	/**
-	 * The enactment is running
-	 */
-	RUNNING,
-	/**
-	 * The enactment is paused (can be continued)
-	 */
-	PAUSED,
-	/**
-	 * The enactment is stopped (termination after the running enactables finish.)
-	 */
-	STOPPED
-
+  /**
+   * The enactment is running
+   */
+  RUNNING,
+  /**
+   * The enactment is paused (can be continued)
+   */
+  PAUSED,
+  /**
+   * The enactment is stopped (termination after the running enactables finish.)
+   */
+  STOPPED
 }
