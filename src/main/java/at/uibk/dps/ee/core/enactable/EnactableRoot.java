@@ -19,7 +19,7 @@ public class EnactableRoot extends Enactable {
    * @param stateListeners
    */
   public EnactableRoot(final Set<EnactableStateListener> stateListeners,
-      EnactmentFunction function) {
+      final EnactmentFunction function) {
     super(stateListeners);
     this.init();
     this.schedule(function);
