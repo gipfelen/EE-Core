@@ -61,8 +61,8 @@ public class Enactable {
   protected EnactmentFunction enactmentFunction;
 
   /**
-   * It is recommended to build enactables using a factory to provide them with the required
-   * listeners. Consequently, the constructor is protected.
+   * It is recommended to build enactables using a factory to provide them with
+   * the required listeners. Consequently, the constructor is protected.
    * 
    * @param stateListeners the list of listeners to notify of state changes
    */
@@ -89,7 +89,7 @@ public class Enactable {
    * @param key the key string
    * @param value the value which is set
    */
-  public void setInputValue(String key, JsonElement value) {
+  public void setInputValue(final String key, final JsonElement value) {
     jsonInput = Optional.ofNullable(jsonInput).orElseGet(() -> new JsonObject());
     jsonInput.add(key, value);
   }
@@ -105,10 +105,11 @@ public class Enactable {
   }
 
   /**
-   * Triggers the execution from the current state of the enactable. This results in an execution
-   * and a change of states until (a) the execution is finished and the enactable returns the output
-   * data, (b) the execution is paused from outside, or (c) the execution is stopped due to an
-   * internal condition, throwing a {@link StopException}.
+   * Triggers the execution from the current state of the enactable. This results
+   * in an execution and a change of states until (a) the execution is finished
+   * and the enactable returns the output data, (b) the execution is paused from
+   * outside, or (c) the execution is stopped due to an internal condition,
+   * throwing a {@link StopException}.
    * 
    * @return the output data
    */
@@ -131,7 +132,7 @@ public class Enactable {
    * 
    * @param function the given function.
    */
-  public void schedule(EnactmentFunction function) {
+  public void schedule(final EnactmentFunction function) {
     if (!getState().equals(State.SCHEDULABLE)) {
       throw new IllegalStateException("The enactable is not yet schedulable.");
     }
@@ -140,8 +141,8 @@ public class Enactable {
   }
 
   /**
-   * Pauses the execution of the enactable by stopping the execution while preserving the inner
-   * state of the enactable.
+   * Pauses the execution of the enactable by stopping the execution while
+   * preserving the inner state of the enactable.
    */
   public final void pause() {
     myPause();
@@ -157,8 +158,8 @@ public class Enactable {
   }
 
   /**
-   * Resets the state of the enactable so that it can be enacted again after a previous enactament
-   * or an error.
+   * Resets the state of the enactable so that it can be enacted again after a
+   * previous enactament or an error.
    * 
    */
   public final void reset() {
@@ -192,8 +193,17 @@ public class Enactable {
     // Nothing; can be overwritten by children.
   }
 
-  public synchronized State getState() {
-    return state;
+  /**
+   * Returns the state of the enactable.
+   * 
+   * @return the state of the enactable.
+   */
+  public State getState() {
+    State result;
+    synchronized (this) {
+      result = this.state;
+    }
+    return result;
   }
 
   /**
@@ -201,10 +211,14 @@ public class Enactable {
    * 
    * @param state the new state
    */
-  public synchronized void setState(final State state) {
-    final State previous = this.state;
-    final State current = state;
-    this.state = state;
+  public void setState(final State state) {
+    State previous;
+    State current;
+    synchronized (this) {
+      previous = this.state;
+      current = state;
+      this.state = state;
+    }
     for (final EnactableStateListener stateListener : stateListeners) {
       stateListener.enactableStateChanged(this, previous, current);
     }
@@ -212,8 +226,8 @@ public class Enactable {
 
   @Override
   public String toString() {
-    String inString = Optional.ofNullable(jsonInput).orElse(new JsonObject()).toString();
-    String outString = Optional.ofNullable(jsonResult).orElse(new JsonObject()).toString();
+    final String inString = Optional.ofNullable(jsonInput).orElse(new JsonObject()).toString();
+    final String outString = Optional.ofNullable(jsonResult).orElse(new JsonObject()).toString();
     return "in: " + inString + " out: " + outString;
   }
 }
