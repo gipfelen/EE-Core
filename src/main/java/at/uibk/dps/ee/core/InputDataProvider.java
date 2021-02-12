@@ -3,7 +3,8 @@ package at.uibk.dps.ee.core;
 import com.google.gson.JsonObject;
 
 /**
- * The {@link InputDataProvider} provides the input data for the enactment of the workflow.
+ * The {@link InputDataProvider} provides the input data for the enactment of
+ * the workflow.
  * 
  * @author Fedor Smirnov
  *

@@ -1,8 +1,8 @@
 package at.uibk.dps.ee.core.exception;
 
 /**
- * The {@link FailureException} is thrown in cases where the execution of the workflow cannot be
- * continued.
+ * The {@link FailureException} is thrown in cases where the execution of the
+ * workflow cannot be continued.
  * 
  * @author Fedor Smirnov
  *

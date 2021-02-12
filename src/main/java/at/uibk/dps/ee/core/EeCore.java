@@ -27,7 +27,8 @@ public class EeCore {
    * Default constructor (also the one used by Guice)
    * 
    * @param inputDataProvider provider for the input data
-   * @param outputDataHandler class handling the data obtained as the result of the WF execution
+   * @param outputDataHandler class handling the data obtained as the result of
+   *        the WF execution
    * @param enactableProvider provider of the WF description
    * @param stateListeners classes which react to changes of the enactment state
    */
@@ -41,8 +42,9 @@ public class EeCore {
   }
 
   /**
-   * Obtains the root enactable from the provider, inits it with the input data, and triggers the
-   * execution. It is expected that the root enactable cannot throw {@link StopException}.
+   * Obtains the root enactable from the provider, inits it with the input data,
+   * and triggers the execution. It is expected that the root enactable cannot
+   * throw {@link StopException}.
    * 
    * @throws FailureException
    */

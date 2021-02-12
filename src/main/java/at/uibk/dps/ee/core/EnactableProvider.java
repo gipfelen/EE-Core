@@ -4,7 +4,8 @@ import at.uibk.dps.ee.core.enactable.Enactable;
 import at.uibk.dps.ee.core.enactable.EnactableRoot;
 
 /**
- * The {@link EnactableProvider} is used to obtain the {@link Enactable} of the overall workflow.
+ * The {@link EnactableProvider} is used to obtain the {@link Enactable} of the
+ * overall workflow.
  * 
  * @author Fedor Smirnov
  */

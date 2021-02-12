@@ -3,8 +3,8 @@ package at.uibk.dps.ee.core.exception;
 import at.uibk.dps.ee.core.enactable.Enactable;
 
 /**
- * The {@link StopException} is thrown by an {@link Enactable} when it stops the execution on its
- * own accord.
+ * The {@link StopException} is thrown by an {@link Enactable} when it stops the
+ * execution on its own accord.
  * 
  * @author Fedor Smirnov
  *

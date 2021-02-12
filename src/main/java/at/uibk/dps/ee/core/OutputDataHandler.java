@@ -3,7 +3,8 @@ package at.uibk.dps.ee.core;
 import com.google.gson.JsonObject;
 
 /**
- * The {@link OutputDataHandler} processes the workflow output data following the EE configuration.
+ * The {@link OutputDataHandler} processes the workflow output data following
+ * the EE configuration.
  * 
  * @author Fedor Smirnov
  */

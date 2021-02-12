@@ -5,8 +5,9 @@ import com.google.gson.JsonObject;
 import at.uibk.dps.ee.core.exception.StopException;
 
 /**
- * The {@link EnactmentFunction} models the concrete behavior of an {@link Enactable}. Assigning an
- * {@link EnactmentFunction} to an {@link Enactable} corresponds to the scheduling step.
+ * The {@link EnactmentFunction} models the concrete behavior of an
+ * {@link Enactable}. Assigning an {@link EnactmentFunction} to an
+ * {@link Enactable} corresponds to the scheduling step.
  * 
  * @author Fedor Smirnov
  */

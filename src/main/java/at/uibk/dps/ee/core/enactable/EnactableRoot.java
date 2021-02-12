@@ -5,7 +5,8 @@ import java.util.Set;
 import com.google.gson.JsonObject;
 
 /**
- * The {@link EnactableRoot} is the enactable modeling the enactment of the overall Workflow.
+ * The {@link EnactableRoot} is the enactable modeling the enactment of the
+ * overall Workflow.
  * 
  * @author Fedor Smirnov
  *
