@@ -4,15 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
-
 public class FailureExceptionTest {
 
 	@Test
 	public void testGetCaughtExceptionAndMessage() {
-		StopException mockStop = mock(StopException.class);
-		FailureException tested = new FailureException(mockStop);
-		assertEquals(FailureException.failureMessage, tested.getMessage());
-		assertEquals(mockStop, tested.getCaughtException());
+	  String message = "message";
+		StopException stopExc = new StopException(message, new IllegalArgumentException());
+		FailureException tested = new FailureException(stopExc);
+		assertEquals(message, tested.getMessage());
+		assertEquals(stopExc, tested.getCause());
 	}
 }
