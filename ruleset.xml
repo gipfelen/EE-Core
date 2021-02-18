@@ -35,6 +35,15 @@
     	<exclude name="DataClass"/>
     </rule>
     
+    <rule ref="category/java/codestyle.xml"> 
+    	<exclude name="OnlyOneReturn"/>
+    	<exclude name="ClassNamingConventions"/>
+    	<exclude name="FieldNamingConventions"/>
+    	<exclude name="AvoidProtectedMethodInFinalClassNotExtending"/>
+    	<exclude name="AtLeastOneConstructor"/>
+    	<exclude name="CallSuperInConstructor"/>
+    </rule>
+    
     
    
     
