@@ -105,6 +105,15 @@ public class Enactable {
   }
 
   /**
+   * Returns true if the json input has been set.
+   * 
+   * @return true if the json input has been set
+   */
+  public boolean isInputSet() {
+    return jsonInput != null;
+  }
+
+  /**
    * Triggers the execution from the current state of the enactable. This results
    * in an execution and a change of states until (a) the execution is finished
    * and the enactable returns the output data, (b) the execution is paused from
