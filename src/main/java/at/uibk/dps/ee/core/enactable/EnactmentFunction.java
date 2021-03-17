@@ -21,4 +21,18 @@ public interface EnactmentFunction {
    * @throws StopException exception thrown if errors occur during the processing
    */
   JsonObject processInput(JsonObject input) throws StopException;
+
+  /**
+   * Returns a string identifying the function.
+   * 
+   * @return the identifier of the function.
+   */
+  String getId();
+
+  /**
+   * Returns a string identifying the type of the function.
+   * 
+   * @return a string identifying the type of the function
+   */
+  String getType();
 }
