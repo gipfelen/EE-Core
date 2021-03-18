@@ -19,14 +19,14 @@ public abstract class EnactmentFunctionDecorator implements EnactmentFunction {
    * 
    * @param decoratedFunction the functions whose behavior is being extended.
    */
-  public EnactmentFunctionDecorator(EnactmentFunction decoratedFunction) {
+  public EnactmentFunctionDecorator(final EnactmentFunction decoratedFunction) {
     this.decoratedFunction = decoratedFunction;
   }
 
   @Override
-  public JsonObject processInput(JsonObject input) throws StopException {
-    JsonObject preprocessedInput = preprocess(input);
-    JsonObject rawResult = decoratedFunction.processInput(preprocessedInput);
+  public JsonObject processInput(final JsonObject input) throws StopException {
+    final JsonObject preprocessedInput = preprocess(input);
+    final JsonObject rawResult = decoratedFunction.processInput(preprocessedInput);
     return postprocess(rawResult);
   }
 

@@ -199,8 +199,10 @@ public class EnactableTest {
   @Test
   public void testGetInput() {
     Enactable tested = new Enactable(new HashSet<>());
+    assertFalse(tested.isInputSet());
     JsonObject input = new JsonObject();
     tested.jsonInput = input;
+    assertTrue(tested.isInputSet());
     assertEquals(input, tested.getInput());
   }
 
