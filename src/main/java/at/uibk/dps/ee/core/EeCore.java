@@ -58,6 +58,7 @@ public class EeCore {
     try {
       enactableRoot.play();
       final JsonObject outputData = enactableRoot.getResult();
+      System.out.println(outputData);
       outputDataHandler.handleOutputData(outputData);
     } catch (StopException stopException) {
       // The root should never throw exceptions.
